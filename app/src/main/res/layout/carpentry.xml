@@ -30,17 +30,19 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageButton
+                <Button
+                    android:id="@+id/btn_carpentry_windows"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:src="@drawable/logo" />
+                    android:text="Windows"/>
 
-                <ImageButton
+                <Button
+                    android:id="@+id/btn_carpentry_kitchen_unit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:src="@drawable/logo" />
+                    android:text="Kitchen unit"/>
 
             </LinearLayout>
 
@@ -50,17 +52,19 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageButton
+                <Button
+                    android:id="@+id/btn_carpentry_wardrobe"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:src="@drawable/logo" />
+                    android:text="wardrobe"/>
 
-                <ImageButton
+                <Button
+                    android:id="@+id/btn_carpentry_doors"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:src="@drawable/logo" />
+                    android:text="Doors"/>
             </LinearLayout>
 
             <LinearLayout
@@ -69,17 +73,19 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageButton
+                <Button
+                    android:id="@+id/btn_carpentry_shelves"
+                    android:text="Shelves"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:src="@drawable/logo" />
+                    android:layout_weight="0.5"/>
 
-                <ImageButton
+                <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:src="@drawable/transperant_background" />
+                    android:text="other"
+                    android:id="@+id/btn_carpentry_other"/>
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
