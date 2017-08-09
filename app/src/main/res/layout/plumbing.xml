@@ -35,14 +35,15 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:text="Water taps"
-                    android:src="@drawable/logo" />
+                    android:id="@+id/btnWaterTaps"
+                    />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:text="sink or basin"
-                    android:src="@drawable/logo" />
+                    android:id="@+id/btnSinkBasin"/>
 
             </LinearLayout>
 
@@ -57,14 +58,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:text="bath or shower"
-                    android:src="@drawable/logo" />
+                    android:id="@+id/btnBathShower"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="geyser"
                     android:layout_weight="0.5"
-                    android:src="@drawable/logo" />
+                    android:id="@+id/btnGeyser"/>
             </LinearLayout>
 
             <LinearLayout
@@ -78,14 +79,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:text="toilet"
-                    android:src="@drawable/logo"/>
+                    android:id="@+id/btnToilet"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="other"
                     android:layout_weight="0.5"
-                    android:src="@drawable/transperant_background" />
+                    android:id="@+id/btnPlumbingOther"/>
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

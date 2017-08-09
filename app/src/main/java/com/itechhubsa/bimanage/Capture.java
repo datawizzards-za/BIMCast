@@ -18,13 +18,12 @@ import android.widget.Toast;
 import java.io.File;
 
 public class Capture extends AppCompatActivity {
-    private Uri imageUri;
+
     protected Bitmap bitmap;
     protected static final int CAMERA_REQUEST = 0;
     protected ImageView imageToUpload;
     private Button btnCancel,btnSave,btnPicture;
-    public Uri downloadUri;
-    protected String image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,18 +55,16 @@ public class Capture extends AppCompatActivity {
         btnPicture = (Button) findViewById(R.id.btn_take_picture);
         imageToUpload = (ImageView) findViewById(R.id.imageViewGallery);
     }
-    void takePicture() {
+    void takePicture(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
 
         //TODO .......start
-        imageUri = Uri.fromFile(f);
+//        imageUri = Uri.fromFile(f);
         //TODO ......end
-
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+        //intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
         startActivityForResult(intent, CAMERA_REQUEST);
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -81,7 +78,7 @@ public class Capture extends AppCompatActivity {
                 }
             }
             if (!f.exists()) {
-                Toast.makeText(this, "Error while capturing image", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Error while capturing image", Toast.LENGTH_LONG).show();
                 return;
             }
 
