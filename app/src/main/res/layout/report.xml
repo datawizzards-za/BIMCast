@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:gravity="center"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context="com.itechhubsa.bimanage.Report"
-    android:weightSum="1">
+    tools:context="com.itechhubsa.bimanage.Report">
 
     <EditText
         android:id="@+id/editText"
@@ -28,6 +32,7 @@
             android:layout_height="match_parent"
             android:hint="Unit number"
             android:gravity="center"
+            android:inputType="number"
             android:layout_margin="8dp"
             android:layout_weight="0.5"/>
         <EditText
@@ -35,19 +40,22 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:gravity="center"
+            android:inputType="number"
             android:hint="Garage number"
             android:layout_weight="0.5"/>
     </LinearLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
+            android:id="@+id/imgReportProof"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:src="@drawable/mainlogo"/>
-    </FrameLayout>
-    <FrameLayout
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_margin="16dp"
         android:layout_height="wrap_content">
@@ -55,6 +63,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Capture Image"
+            android:background="@drawable/my_buttons"
             android:id="@+id/imgBtnReport"/>
-    </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Submit Report"
+            android:background="@drawable/my_buttons"
+            android:id="@+id/btnSubmitReport"/>
+    </LinearLayout>
 </LinearLayout>
+</ScrollView>

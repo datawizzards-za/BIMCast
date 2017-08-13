@@ -1,8 +1,7 @@
-package com.example.admin.shopsmart.activities;
+package com.itechhubsa.bimanage;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.example.admin.shopsmart.R;
 
 public class AboutUs extends Activity {
     @Override

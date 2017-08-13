@@ -1,9 +1,9 @@
 package com.itechhubsa.bimanage;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class AppVersion extends AppCompatActivity {
+public class AppVersion extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

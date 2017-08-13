@@ -9,5 +9,4 @@
         android:id="@+id/about_us_text"
         android:textSize="16sp"
         android:text="@string/about_us"/>
-
 </LinearLayout>
