@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/parking">
+        <menu>
+            <item
+                android:id="@+id/nav_parking"
+                android:icon="@drawable/ic_action_parking_problem"
+                android:title="@string/parking_problem"/>
+            <item
+                android:id="@+id/nav_washing_lane"
+                android:icon="@drawable/ic_washing_lane"
+                android:title="@string/washing_lanes"/>
+            <item
+                android:id="@+id/nav_car_fault"
+                android:icon="@drawable/ic_action_car_fault"
+                android:title="@string/car_fault"/>
+            <item
+                android:id="@+id/nav_gates"
+                android:icon="@drawable/ic_action_gates"
+                android:title="@string/gates"/>
+        </menu>
+    </item>
+
+    <item android:title="@string/unit_maintenance">
+        <menu>
+            <item
+                android:id="@+id/nav_electricity"
+                android:icon="@drawable/ic_action_electrical"
+                android:title="@string/electrical_problem" />
+            <item
+                android:id="@+id/nav_plumbing"
+                android:icon="@drawable/ic_action_plumbing"
+                android:title="@string/plumbing_problem" />
+            <item
+                android:id="@+id/nav_carpentry"
+                android:icon="@drawable/ic_action_carpetry"
+                android:title="@string/carpentry_problem" />
+        </menu>
+    </item>
+
+    <item android:title="@string/communicate">
+        <menu>
+            <item
+            android:id="@+id/nav_send_message"
+            android:icon="@drawable/ic_action_push_message"
+            android:title="@string/push_message" />
+            <item
+                android:id="@+id/nav_emergency_call"
+                android:icon="@drawable/ic_action_emergency_call"
+                android:title="@string/emergency_call" />
+
+        </menu>
+    </item>
+
+    <item android:title="@string/information">
+        <menu>
+            <item
+                android:id="@+id/nav_about_us"
+                android:icon="@drawable/ic_action_about_us"
+                android:title="@string/about_us" />
+            <item
+                android:id="@+id/nav_app_version"
+                android:icon="@drawable/ic_action_app_version"
+                android:title="@string/app_version"/>
+        </menu>
+    </item>
+</menu>

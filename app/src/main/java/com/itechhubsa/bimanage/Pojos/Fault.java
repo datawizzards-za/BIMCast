@@ -2,14 +2,14 @@ package com.itechhubsa.bimanage.Pojos;
 
 import java.util.Date;
 
-public class Report {
+public class Fault {
     private String report_description;
     private int unit_number;
     private String parking_space;
     private String imageUrl;
     private Long report_date;
 
-    public Report(String report_description, int unit_number, String parking_space, String imageUrl) {
+    public Fault(String report_description, int unit_number, String parking_space, String imageUrl) {
         this.report_description = report_description;
         this.unit_number = unit_number;
         this.parking_space = parking_space;
