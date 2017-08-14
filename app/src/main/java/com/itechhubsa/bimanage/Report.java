@@ -14,7 +14,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.itechhubsa.bimanage.Pojos.Fault;
 
 public class Report extends AppCompatActivity implements View.OnClickListener {
@@ -22,7 +26,6 @@ public class Report extends AppCompatActivity implements View.OnClickListener {
     private static final int CAMERA_REQUEST = 2017;
     private EditText etDescription, etUnitNo, etParkingSpace;
     private ImageView imgReportProof;
-    private String imageUriPath;
     private Uri imageUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +75,7 @@ public class Report extends AppCompatActivity implements View.OnClickListener {
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
                 break;
             case R.id.btnSubmitReport:
-                if(!TextUtils.isEmpty(etDescription.getText().toString())){
-                    FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(),
-                            Integer.parseInt(etUnitNo.getText().toString()),etParkingSpace.getText().toString(),imageUri.toString()));
-                    Toast.makeText(getBaseContext(), "clicked...", Toast.LENGTH_SHORT).show();
-                }
+                addComment();
                 break;
             default:
                 break;
@@ -86,8 +85,24 @@ public class Report extends AppCompatActivity implements View.OnClickListener {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             imageUri = data.getData();
             imgReportProof.setImageURI(imageUri);
-//            Bitmap photo = (Bitmap) data.getExtras().get("data");
-//            imgReportProof.setImageBitmap(Bitmap.createScaledBitmap(photo, 320, 480, false));
         }
+    }
+
+    private void addComment() {
+        StorageReference filePath = FirebaseStorage.getInstance().getReference().child("Gallery").child(imageUri.getLastPathSegment());
+        filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Uri downloadUri = taskSnapshot.getDownloadUrl();
+                assert downloadUri != null;
+                if(!TextUtils.isEmpty(etDescription.getText().toString())){
+                    FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(),
+                            Integer.parseInt(etUnitNo.getText().toString()),etParkingSpace.getText().toString(),downloadUri.toString()));
+
+                }else{
+                    Toast.makeText(getBaseContext(), "Could not upload you comment...", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
