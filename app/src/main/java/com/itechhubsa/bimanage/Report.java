@@ -27,6 +27,7 @@ public class Report extends AppCompatActivity implements View.OnClickListener {
     private EditText etDescription, etUnitNo, etParkingSpace;
     private ImageView imgReportProof;
     private Uri imageUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,18 +52,17 @@ public class Report extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        if(_back_key_pressed.equalsIgnoreCase("Electricity")){
+        if (_back_key_pressed.equalsIgnoreCase("Electricity")) {
             startActivity(new Intent(getBaseContext(), Electricity.class));
             finish();
-        }
-        else if(_back_key_pressed.equalsIgnoreCase("Home")){
-            startActivity(new Intent(getBaseContext(), Home.class));
-            finish();
-        }else if(_back_key_pressed.equalsIgnoreCase("Carpentry")){
+        } else if (_back_key_pressed.equalsIgnoreCase("Carpentry")) {
             startActivity(new Intent(getBaseContext(), Carpentry.class));
             finish();
-        }else if(_back_key_pressed.equalsIgnoreCase("Plumbing")){
+        } else if (_back_key_pressed.equalsIgnoreCase("Plumbing")) {
             startActivity(new Intent(getBaseContext(), Plumbing.class));
+            finish();
+        } else {
+            startActivity(new Intent(getBaseContext(), Home.class));
             finish();
         }
     }
@@ -75,12 +75,14 @@ public class Report extends AppCompatActivity implements View.OnClickListener {
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
                 break;
             case R.id.btnSubmitReport:
+//                Toast.makeText(getBaseContext(), "Clicked, and am about to save..", Toast.LENGTH_SHORT).show();
                 addComment();
                 break;
             default:
                 break;
         }
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             imageUri = data.getData();
@@ -89,20 +91,28 @@ public class Report extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void addComment() {
-        StorageReference filePath = FirebaseStorage.getInstance().getReference().child("Gallery").child(imageUri.getLastPathSegment());
-        filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Uri downloadUri = taskSnapshot.getDownloadUrl();
-                assert downloadUri != null;
-                if(!TextUtils.isEmpty(etDescription.getText().toString())){
-                    FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(),
-                            Integer.parseInt(etUnitNo.getText().toString()),etParkingSpace.getText().toString(),downloadUri.toString()));
-
-                }else{
-                    Toast.makeText(getBaseContext(), "Could not upload you comment...", Toast.LENGTH_SHORT).show();
+        if (imageUri != null) {
+            StorageReference filePath = FirebaseStorage.getInstance().getReference().child("Gallery").child(imageUri.getLastPathSegment());
+            Toast.makeText(getBaseContext(), imageUri.toString(), Toast.LENGTH_SHORT).show();
+            filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    assert downloadUri != null;
+                    if (!TextUtils.isEmpty(etDescription.getText().toString())) {
+                        FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(),
+                                Integer.parseInt(etUnitNo.getText().toString()), etParkingSpace.getText().toString(), downloadUri.toString()));
+                        Toast.makeText(getBaseContext(), "Fault message sent...", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getBaseContext(), Home.class));
+                        finish();
+                    } else {
+                        Toast.makeText(getBaseContext(), "Could not upload you comment...", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            Toast.makeText(getBaseContext(), "Fault not captured...", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

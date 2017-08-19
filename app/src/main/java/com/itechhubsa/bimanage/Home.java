@@ -17,15 +17,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.itechhubsa.bimanage.Pojos.Fault;
 import com.squareup.picasso.Picasso;
+
+import java.text.DateFormat;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private String _compare = "Home";
@@ -109,13 +109,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             protected void populateViewHolder(FaultViewHolder viewHolder, final Fault model, final int position) {
                 viewHolder.setDescription(model.getReport_description());
-                viewHolder.setDate(String.valueOf(model.getReport_date()));
+                String stringDate = DateFormat.getDateTimeInstance().format(model.getReport_date());
                 viewHolder.setImg(getApplicationContext(), model.getImageUrl());
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        Intent intent = new Intent(getBaseContext(), DirectMessage.class);
+                        intent.putExtra("message", model);
+                        startActivity(intent);
+                        finish();
                     }
                 });
             }
