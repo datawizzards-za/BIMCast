@@ -1,8 +1,9 @@
 package com.itechhubsa.bimanage.Pojos;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Fault {
+public class Fault implements Serializable{
     private String report_description;
     private int unit_number;
     private String parking_space;
@@ -15,6 +16,9 @@ public class Fault {
         this.parking_space = parking_space;
         this.imageUrl = imageUrl;
         this.report_date = new Date().getTime();
+    }
+
+    public Fault() {
     }
 
     public String getReport_description() {

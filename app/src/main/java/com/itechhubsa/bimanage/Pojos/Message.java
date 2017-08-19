@@ -1,8 +1,9 @@
 package com.itechhubsa.bimanage.Pojos;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable{
     private String message;
     private String user;
     private Long date;

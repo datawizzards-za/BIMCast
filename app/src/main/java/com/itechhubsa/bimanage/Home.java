@@ -1,5 +1,6 @@
 package com.itechhubsa.bimanage;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,39 +11,41 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
-import com.google.firebase.auth.FirebaseAuth;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.itechhubsa.bimanage.Pojos.Fault;
+import com.squareup.picasso.Picasso;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private String _compare = "Home";
-    private LinearLayout home;
+    private RecyclerView recyclerView;
     private static final int SIGN_IN_REQUEST_CODE = 2017;
-    private FirebaseListAdapter<Fault> adapter;
+    private DatabaseReference _databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+        initialize();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        if(FirebaseAuth.getInstance().getCurrentUser()==null)
-        {
-            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),SIGN_IN_REQUEST_CODE);
-        }else{
-            Toast.makeText(getBaseContext(), "You are logged..", Toast.LENGTH_LONG).show();
-        }
-        /**
-         **
-         */
+//        if(FirebaseAuth.getInstance().getCurrentUser()==null)
+//        {
+//            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),SIGN_IN_REQUEST_CODE);
+//        }else{
+//            Toast.makeText(getBaseContext(), "You are logged..", Toast.LENGTH_LONG).show();
+//        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -64,6 +67,62 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
         });
     }
+    void initialize(){
+        _databaseReference = FirebaseDatabase.getInstance().getReference();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+    private static class FaultViewHolder extends RecyclerView.ViewHolder{
+
+        View mView;
+
+        public FaultViewHolder(View itemView) {
+            super(itemView);
+            mView = itemView;
+        }
+
+        void setDescription(String description){
+            TextView tvDescription = (TextView) mView.findViewById(R.id.tv_description);
+            tvDescription.setText(description);
+        }
+
+        void setDate(String messageDate){
+            TextView tvMessageDate = (TextView) mView.findViewById(R.id.tv_message_time);
+            tvMessageDate.setText(messageDate);
+        }
+
+        void setImg(Context c, String img){
+            ImageView imageView = (ImageView) mView.findViewById(R.id.user_image_profile);
+            Picasso.with(c).load(img).into(imageView);
+        }
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseRecyclerAdapter<Fault, FaultViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Fault, FaultViewHolder>(
+                Fault.class,
+                R.layout.report_view,
+                FaultViewHolder.class,
+                _databaseReference
+        ) {
+            @Override
+            protected void populateViewHolder(FaultViewHolder viewHolder, final Fault model, final int position) {
+                viewHolder.setDescription(model.getReport_description());
+                viewHolder.setDate(String.valueOf(model.getReport_date()));
+                viewHolder.setImg(getApplicationContext(), model.getImageUrl());
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+            }
+        };
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
+    }
+
 
     @Override
     public void onBackPressed() {
