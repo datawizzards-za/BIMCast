@@ -81,6 +81,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             super(itemView);
             mView = itemView;
         }
+        void setUser(String user){
+            TextView tvNames = (TextView) mView.findViewById(R.id.tv_username);
+            tvNames.setText(user);
+        }
 
         void setDescription(String description){
             TextView tvDescription = (TextView) mView.findViewById(R.id.tv_description);
@@ -94,7 +98,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         void setImg(Context c, String img){
             ImageView imageView = (ImageView) mView.findViewById(R.id.user_image_profile);
-            Picasso.with(c).load(img).into(imageView);
+            if(!img.isEmpty()){
+                Picasso.with(c).load(img).into(imageView);
+            }
         }
     }
     @Override
@@ -111,7 +117,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 viewHolder.setDescription(model.getReport_description());
                 String stringDate = DateFormat.getDateTimeInstance().format(model.getReport_date());
                 viewHolder.setImg(getApplicationContext(), model.getImageUrl());
-
+                viewHolder.setDate(stringDate);
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

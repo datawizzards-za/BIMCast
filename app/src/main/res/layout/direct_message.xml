@@ -5,21 +5,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.itechhubsa.bimanage.DirectMessage">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
+            android:id="@+id/single_message_description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/single_message_description"/>
+            android:text="message" />
+
         <TextView
+            android:id="@+id/single_message_unit_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:id="@+id/single_message_unit_number"/>
+            android:text="unit number" />
     </FrameLayout>
-<ListView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/single_message_list_view"/>
+
+    <ListView
+        android:id="@+id/single_message_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

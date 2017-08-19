@@ -20,7 +20,7 @@ public class DirectMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.direct_message);
         initilize();
-        DirectMessageAdapter adapter = new DirectMessageAdapter(messages);
+//        DirectMessageAdapter adapter = new DirectMessageAdapter(messages);
     }
     void initilize(){
         list = (ListView) findViewById(R.id.single_message_list_view);

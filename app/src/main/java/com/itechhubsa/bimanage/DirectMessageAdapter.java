@@ -1,18 +1,25 @@
 package com.itechhubsa.bimanage;
 
+import android.content.Context;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
 import com.itechhubsa.bimanage.Pojos.Message;
 
 import java.util.ArrayList;
 
-public class DirectMessageAdapter extends BaseAdapter {
+public class DirectMessageAdapter extends ArrayAdapter {
     private ArrayList<Message> messages = new ArrayList<>();
-    DirectMessageAdapter(ArrayList<Message> messages){
-        this.messages = messages;
+
+    public DirectMessageAdapter(Context context, int resource, ArrayList<Message> messages) {
+        super(context, resource, messages);
+
     }
+
     @Override
     public int getCount() {
         return messages.size();
