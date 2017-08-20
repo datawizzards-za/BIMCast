@@ -14,6 +14,11 @@ public class Message implements Serializable{
         date = new Date().getTime();
     }
 
+    public Message(String message) {
+        this.message = message;
+        date = new Date().getTime();
+    }
+
     public String getMessage() {
         return message;
     }
@@ -30,11 +35,11 @@ public class Message implements Serializable{
         this.user = user;
     }
 
-    public Long getDate() {
+    public Long getMessageDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setMessageDate(Long date) {
         this.date = date;
     }
 }

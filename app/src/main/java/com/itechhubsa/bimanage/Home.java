@@ -59,9 +59,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /**
-                ** TODO the contacts format will be UNITS numbers
-                 */
                 Snackbar.make(view, "This must go to contact to search", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -122,7 +119,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getBaseContext(), DirectMessage.class);
-                        intent.putExtra("message", model);
+                        intent.putExtra("fault", model);
                         startActivity(intent);
                         finish();
                     }
