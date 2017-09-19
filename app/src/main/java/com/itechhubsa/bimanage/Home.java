@@ -28,7 +28,7 @@ import com.squareup.picasso.Picasso;
 import java.text.DateFormat;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private String _compare = "Home";
+    //private String _compare = "Home";
     private RecyclerView recyclerView;
     private static final int SIGN_IN_REQUEST_CODE = 2017;
     private DatabaseReference _databaseReference;
@@ -97,6 +97,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             ImageView imageView = (ImageView) mView.findViewById(R.id.user_image_profile);
             if(!img.isEmpty()){
                 Picasso.with(c).load(img).into(imageView);
+                imageView.setRotation(imageView.getRotation()+90);
             }
         }
     }
@@ -159,8 +160,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 finish();
                 break;
             case R.id.nav_parking:
-                intent = new Intent(getBaseContext(),Report.class);
-                intent.putExtra("_compare",_compare);
+                intent = new Intent(getBaseContext(),BuildingMaintenance.class);
+                //intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
+                intent.putExtra("_fault","parking fault");
                 startActivity(intent);
                 finish();
                 break;
@@ -171,8 +174,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(new Intent(getBaseContext(),AppVersion.class));
                 break;
             case R.id.nav_car_fault:
-                intent = new Intent(getBaseContext(),Report.class);
-                intent.putExtra("_compare",_compare);
+                intent = new Intent(getBaseContext(),BuildingMaintenance.class);
+                //intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
+                intent.putExtra("_fault","car fault");
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.nav_other:
+                intent = new Intent(getBaseContext(),BuildingMaintenance.class);
+                //intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",true);
+                intent.putExtra("_fault","Fault not specified");
                 startActivity(intent);
                 finish();
                 break;
@@ -180,8 +193,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 Toast.makeText(getBaseContext(),"call the emergency line",Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_gates:
-                intent = new Intent(getBaseContext(),Report.class);
-                intent.putExtra("_compare",_compare);
+                intent = new Intent(getBaseContext(),BuildingMaintenance.class);
+                //intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
+                intent.putExtra("_fault","gates fault");
                 startActivity(intent);
                 finish();
                 break;
@@ -189,8 +204,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 Toast.makeText(getBaseContext(),"search contact then you push message",Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_washing_lane:
-                intent = new Intent(getBaseContext(),Report.class);
-                intent.putExtra("_compare",_compare);
+                intent = new Intent(getBaseContext(),BuildingMaintenance.class);
+                //intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
+                intent.putExtra("_fault","washing lanes fault");
                 startActivity(intent);
                 finish();
                 break;
@@ -209,16 +226,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         if(requestCode == SIGN_IN_REQUEST_CODE){
             if(resultCode==RESULT_OK){
                 //Snackbar.make(home, "Loading you messages..", Snackbar.LENGTH_LONG).show();
-                displayMessage();
+                //displayMessage();
+                Toast.makeText(getBaseContext(),"Loading you messages..",Toast.LENGTH_LONG).show();
             }else{
                 //Snackbar.make(home, "We are unable to log messages...\n"+
                         //"check connection!", Snackbar.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"We are unable to log messages...\n"+
+                        "check connection!",Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    void displayMessage()
-    {
-
     }
 }

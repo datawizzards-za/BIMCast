@@ -40,4 +40,5 @@
     <string name="gates">Gates</string>
     <string name="washing_lanes">washing lanes</string>
     <string name="dd_mm_yyyy_hh_mm_ss">DD/MM/YYYY (HH:MM:SS)</string>
+    <string name="other">Other</string>
 </resources>

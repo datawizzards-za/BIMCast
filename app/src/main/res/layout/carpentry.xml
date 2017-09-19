@@ -33,7 +33,9 @@
                 <Button
                     android:id="@+id/btn_carpentry_windows"
                     android:layout_width="match_parent"
+                    android:padding="1dp"
                     android:layout_height="match_parent"
+                    android:background="@drawable/my_buttons"
                     android:layout_weight="0.5"
                     android:text="Windows"/>
 
@@ -41,6 +43,8 @@
                     android:id="@+id/btn_carpentry_kitchen_unit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="1dp"
+                    android:background="@drawable/my_buttons"
                     android:layout_weight="0.5"
                     android:text="Kitchen unit"/>
 
@@ -56,6 +60,8 @@
                     android:id="@+id/btn_carpentry_wardrobe"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="1dp"
+                    android:background="@drawable/my_buttons"
                     android:layout_weight="0.5"
                     android:text="wardrobe"/>
 
@@ -63,6 +69,8 @@
                     android:id="@+id/btn_carpentry_doors"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="1dp"
+                    android:background="@drawable/my_buttons"
                     android:layout_weight="0.5"
                     android:text="Doors"/>
             </LinearLayout>
@@ -76,13 +84,17 @@
                 <Button
                     android:id="@+id/btn_carpentry_shelves"
                     android:text="Shelves"
+                    android:padding="1dp"
                     android:layout_width="match_parent"
+                    android:background="@drawable/my_buttons"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="1dp"
+                    android:background="@drawable/my_buttons"
                     android:layout_weight="0.5"
                     android:text="other"
                     android:id="@+id/btn_carpentry_other"/>

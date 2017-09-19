@@ -10,5 +10,5 @@
         android:right="4dp" />
     <stroke android:width="2dp"
         android:color="@color/colorPrimaryDark"/>
-    <solid android:color="@color/colorBackground"/>
+    <solid android:color="#ffebee"/>
 </shape>

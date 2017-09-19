@@ -41,43 +41,49 @@ public class Carpentry extends AppCompatActivity implements View.OnClickListener
         switch (v.getId())
         {
             case R.id.btn_carpentry_doors:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
                 intent.putExtra("problem","Doors");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btn_carpentry_kitchen_unit:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
                 intent.putExtra("problem","Kitchen units");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btn_carpentry_other:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",true);
                 intent.putExtra("problem","Other Specification");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btn_carpentry_shelves:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
                 intent.putExtra("problem","Shelves");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btn_carpentry_wardrobe:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
                 intent.putExtra("problem","Wardrobe");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btn_carpentry_windows:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
                 intent.putExtra("problem","Windows");
                 startActivity(intent);
                 finish();

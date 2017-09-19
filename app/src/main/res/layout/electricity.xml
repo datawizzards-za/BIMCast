@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
+                android:background="@drawable/my_buttons"
                 android:text="Lights and Switches"
                 android:id="@+id/imgBtnLightSwitch" />
 
@@ -40,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="electrical Sockets"
+                android:background="@drawable/my_buttons"
                 android:id="@+id/btnElectricalSockets"
                 android:layout_weight="0.5"/>
 
@@ -55,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
+                android:background="@drawable/my_buttons"
                 android:text="Electronics"
                 android:id="@+id/btnElectronics"/>
 
@@ -62,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
+                android:background="@drawable/my_buttons"
                 android:id="@+id/btnElectricityOther"
                 android:text="other"/>
         </LinearLayout>

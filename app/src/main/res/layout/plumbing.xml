@@ -35,6 +35,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:text="Water taps"
+                    android:background="@drawable/my_buttons"
                     android:id="@+id/btnWaterTaps"
                     />
 
@@ -42,6 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
+                    android:background="@drawable/my_buttons"
                     android:text="sink or basin"
                     android:id="@+id/btnSinkBasin"/>
 
@@ -57,12 +59,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
+                    android:background="@drawable/my_buttons"
                     android:text="bath or shower"
                     android:id="@+id/btnBathShower"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/my_buttons"
                     android:text="geyser"
                     android:layout_weight="0.5"
                     android:id="@+id/btnGeyser"/>
@@ -77,6 +81,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/my_buttons"
                     android:layout_weight="0.5"
                     android:text="toilet"
                     android:id="@+id/btnToilet"/>
@@ -86,6 +91,7 @@
                     android:layout_height="match_parent"
                     android:text="other"
                     android:layout_weight="0.5"
+                    android:background="@drawable/my_buttons"
                     android:id="@+id/btnPlumbingOther"/>
             </LinearLayout>
         </LinearLayout>

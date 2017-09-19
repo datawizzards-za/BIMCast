@@ -42,44 +42,50 @@ public class Plumbing extends AppCompatActivity implements View.OnClickListener 
         Intent intent;
         switch (v.getId()) {
             case R.id.btnWaterTaps:
-                intent = new Intent(getBaseContext(), Report.class);
+                intent = new Intent(getBaseContext(), UnitMaintenance.class);
                 intent.putExtra("_compare", _compare);
-                intent.putExtra("problem", "Water Taps");
+                intent.putExtra("_other",false);
+                intent.putExtra("_problem", "Water Taps");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btnToilet:
-                intent = new Intent(getBaseContext(), Report.class);
+                intent = new Intent(getBaseContext(), UnitMaintenance.class);
                 intent.putExtra("_compare", _compare);
-                intent.putExtra("problem", "Toilets");
+                intent.putExtra("_other",false);
+                intent.putExtra("_problem", "Toilets");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btnSinkBasin:
-                intent = new Intent(getBaseContext(), Report.class);
+                intent = new Intent(getBaseContext(), UnitMaintenance.class);
                 intent.putExtra("_compare", _compare);
-                intent.putExtra("problem", "Sink and Basin");
+                intent.putExtra("_other",false);
+                intent.putExtra("_problem", "Sink and Basin");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btnPlumbingOther:
-                intent = new Intent(getBaseContext(), Report.class);
+                intent = new Intent(getBaseContext(), UnitMaintenance.class);
                 intent.putExtra("_compare", _compare);
-                intent.putExtra("problem", "Other specification");
+                intent.putExtra("_problem", "Other specification");
+                intent.putExtra("_other",true);
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btnGeyser:
-                intent = new Intent(getBaseContext(), Report.class);
+                intent = new Intent(getBaseContext(), UnitMaintenance.class);
                 intent.putExtra("_compare", _compare);
-                intent.putExtra("problem", "Geyser");
+                intent.putExtra("_problem", "Geyser");
+                intent.putExtra("_other",false);
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btnBathShower:
-                intent = new Intent(getBaseContext(), Report.class);
+                intent = new Intent(getBaseContext(), UnitMaintenance.class);
                 intent.putExtra("_compare", _compare);
-                intent.putExtra("problem", "Bath and Shower");
+                intent.putExtra("_problem", "Bath and Shower");
+                intent.putExtra("_other",false);
                 startActivity(intent);
                 finish();
                 break;

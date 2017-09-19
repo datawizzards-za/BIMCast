@@ -3,22 +3,33 @@ package com.itechhubsa.bimanage.Pojos;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Fault implements Serializable{
+public class Fault implements Serializable {
     private String report_description;
     private int unit_number;
-    private String parking_space;
+    private String fault;
+    private String unit_location;
     private String imageUrl;
     private Long report_date;
 
-    public Fault(String report_description, int unit_number, String parking_space, String imageUrl) {
+    public Fault(String report_description, int unit_number, String unit_location, String fault, String imageUrl) {
         this.report_description = report_description;
         this.unit_number = unit_number;
-        this.parking_space = parking_space;
+        this.unit_location = unit_location;
         this.imageUrl = imageUrl;
+        this.fault = fault;
         this.report_date = new Date().getTime();
     }
 
+    public String getFault() {
+        return fault;
+    }
+
+    public void setFault(String fault) {
+        this.fault = fault;
+    }
+
     public Fault() {
+
     }
 
     public String getReport_description() {
@@ -37,12 +48,12 @@ public class Fault implements Serializable{
         this.unit_number = unit_number;
     }
 
-    public String getParking_space() {
-        return parking_space;
+    public String getUnit_location() {
+        return unit_location;
     }
 
-    public void setParking_space(String parking_space) {
-        this.parking_space = parking_space;
+    public void setUnit_location(String unit_location) {
+        this.unit_location = unit_location;
     }
 
     public String getImageUrl() {

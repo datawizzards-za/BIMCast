@@ -37,29 +37,33 @@ public class Electricity extends AppCompatActivity implements View.OnClickListen
         switch (v.getId())
         {
             case R.id.imgBtnLightSwitch:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
                 intent.putExtra("problem","Lights and Light Switches");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btnElectricalSockets:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
                 intent.putExtra("problem","Electrical Sockets");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btnElectronics:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",false);
                 intent.putExtra("problem","Electronics");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.btnElectricityOther:
-                intent = new Intent(getBaseContext(),Report.class);
+                intent = new Intent(getBaseContext(),UnitMaintenance.class);
                 intent.putExtra("_compare",_compare);
+                intent.putExtra("_other",true);
                 intent.putExtra("problem","Other specification");
                 startActivity(intent);
                 finish();
