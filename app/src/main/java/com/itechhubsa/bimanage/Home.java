@@ -129,8 +129,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -140,9 +138,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             super.onBackPressed();
         }
     }
-
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item){
         int _id = item.getItemId();
         Intent intent;
 
@@ -219,7 +216,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);

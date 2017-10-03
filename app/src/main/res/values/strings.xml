@@ -10,25 +10,21 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="enter_email_address">Enter Email Address</string>
     <string name="enter_password">Enter Password</string>
     <string name="sign_in">sign in</string>
     <string name="do_you_have_a_car">Do you have a car?</string>
     <string name="user_name">Username</string>
     <string name="title_activity_home">Home</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
     <string name="unit_maintenance">UNIT MAINTENANCE</string>
     <string name="electrical_problem">Electrical Problem</string>
     <string name="plumbing_problem">Plumbing Problem</string>
     <string name="carpentry_problem">Carpentry Problem</string>
-    <string name="parking">OUTSIDE BUILDING MAINTANANCE</string>
+    <string name="parking">OUTSIDE BUILDING MAINTENANCE</string>
     <string name="car_fault">Car Fault</string>
     <string name="parking_problem">Parking Problem</string>
     <string name="communicate">COMMUNICATE</string>
@@ -41,4 +37,6 @@
     <string name="washing_lanes">washing lanes</string>
     <string name="dd_mm_yyyy_hh_mm_ss">DD/MM/YYYY (HH:MM:SS)</string>
     <string name="other">Other</string>
+    <string name="developer">Powered by ITechHub</string>
+    <string name="version">Version 1.0</string>
 </resources>
