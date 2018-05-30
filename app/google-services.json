@@ -8,6 +8,54 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:688766190468:android:6e32562f34af8c5d",
+        "android_client_info": {
+          "package_name": "com.itechhub.datawizards.colabo_ai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688766190468-aqo3m0f0ij8evg96os96948bnvvi7iq3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.itechhub.datawizards.colabo_ai",
+            "certificate_hash": "61e02bc8d0ace4369406e4f81d2b27065bbf1ebe"
+          }
+        },
+        {
+          "client_id": "688766190468-nhgr3ifm87uc5dae0ive34pfn1a1jv5o.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "688766190468-nhgr3ifm87uc5dae0ive34pfn1a1jv5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBho8n3K0f8cF6UtUIKxioRCTHMz711_PQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688766190468-nhgr3ifm87uc5dae0ive34pfn1a1jv5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:688766190468:android:4e61510a6199f601",
         "android_client_info": {
           "package_name": "com.itechhubsa.bimanage"
@@ -15,12 +63,24 @@
       },
       "oauth_client": [
         {
+          "client_id": "688766190468-p38m1jm4m2obu1crgnrs1s551aveju70.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.itechhubsa.bimanage",
+            "certificate_hash": "1f791189335b8b39d5fa3fb88977bd1ac15478b9"
+          }
+        },
+        {
           "client_id": "688766190468-ii3l1nnt4nb8pipjvlf301r1fh0frvso.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.itechhubsa.bimanage",
             "certificate_hash": "47f0c7cb5aaff82144d942fe953376a0a02622ab"
           }
+        },
+        {
+          "client_id": "688766190468-nhgr3ifm87uc5dae0ive34pfn1a1jv5o.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "688766190468-nhgr3ifm87uc5dae0ive34pfn1a1jv5o.apps.googleusercontent.com",

@@ -10,10 +10,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.itechhubsa.bimanage.Pojos.Fault;
 import com.itechhubsa.bimanage.Pojos.Message;
-
 import java.util.ArrayList;
 
 public class DirectMessage extends Activity implements View.OnClickListener {
@@ -31,17 +29,19 @@ public class DirectMessage extends Activity implements View.OnClickListener {
         assert fault != null;
         message_description.setText(fault.getReport_description());
 //        building_unit.setText(fault.getUnit_number());
+
+
     }
     void initilize(){
-        list = (ListView) findViewById(R.id.single_message_list_view);
+        list = findViewById(R.id.single_message_list_view);
         messages = new ArrayList<>();
-        etMessage = (EditText) findViewById(R.id.single_message_et_message);
-        message_description = (TextView) findViewById(R.id.single_message_description);
-        building_unit = (TextView) findViewById(R.id.single_message_unit_number);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabSend);
+        etMessage = findViewById(R.id.single_message_et_message);
+        message_description = findViewById(R.id.single_message_description);
+        building_unit =  findViewById(R.id.single_message_unit_number);
+        FloatingActionButton fab = findViewById(R.id.fabSend);
 
-        message_description = (TextView) findViewById(R.id.single_message_description);
-        building_unit = (TextView) findViewById(R.id.single_message_unit_number);
+        message_description =  findViewById(R.id.single_message_description);
+        building_unit = findViewById(R.id.single_message_unit_number);
 //        fab.setEnabled(false);
         fab.setOnClickListener(this);
     }

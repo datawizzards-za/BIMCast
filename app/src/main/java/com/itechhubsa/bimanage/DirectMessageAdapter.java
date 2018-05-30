@@ -42,8 +42,8 @@ public class DirectMessageAdapter extends ArrayAdapter {
         }
         Message message = getItem(position);
 
-        TextView tv_description = (TextView) view.findViewById(R.id.tv_message);
-        TextView tv_time = (TextView) view.findViewById(R.id.tv_message_time);
+        TextView tv_description = view.findViewById(R.id.tv_message);
+        TextView tv_time = view.findViewById(R.id.tv_message_time);
 //        TextView tv_
         assert message != null;
         String stringDate = DateFormat.getDateTimeInstance().format(message.getMessageDate());
