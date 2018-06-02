@@ -16,10 +16,10 @@ public class Electricity extends AppCompatActivity implements View.OnClickListen
     }
     void initialize()
     {
-        Button btnLightSwitch = (Button) findViewById(R.id.imgBtnLightSwitch);
-        Button btnElectricalSockets = (Button) findViewById(R.id.btnElectricalSockets);
-        Button btnElectronics = (Button) findViewById(R.id.btnElectronics);
-        Button btnElectricityOther = (Button) findViewById(R.id.btnElectricityOther);
+        Button btnLightSwitch = findViewById(R.id.imgBtnLightSwitch);
+        Button btnElectricalSockets = findViewById(R.id.btnElectricalSockets);
+        Button btnElectronics = findViewById(R.id.btnElectronics);
+        Button btnElectricityOther = findViewById(R.id.btnElectricityOther);
         btnLightSwitch.setOnClickListener(this);
         btnElectricalSockets.setOnClickListener(this);
         btnElectronics.setOnClickListener(this);

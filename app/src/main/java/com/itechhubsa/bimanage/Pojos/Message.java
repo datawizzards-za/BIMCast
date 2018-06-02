@@ -11,12 +11,20 @@ public class Message implements Serializable{
     public Message(String message, String user) {
         this.message = message;
         this.user = user;
-        date = new Date().getTime();
+        setDate();
     }
 
     public Message(String message) {
         this.message = message;
-        date = new Date().getTime();
+        setDate();
+    }
+
+    public Message() {
+        setDate();
+    }
+
+    public void setDate() {
+        this.date = new Date().getTime();
     }
 
     public String getMessage() {
@@ -31,15 +39,7 @@ public class Message implements Serializable{
         return user;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public Long getMessageDate() {
         return date;
-    }
-
-    public void setMessageDate(Long date) {
-        this.date = date;
     }
 }

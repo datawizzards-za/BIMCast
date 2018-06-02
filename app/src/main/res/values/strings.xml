@@ -39,4 +39,6 @@
     <string name="other">Other</string>
     <string name="developer">Powered by ITechHub</string>
     <string name="version">Version 1.0</string>
+    <string name="sign_out">Sign out</string>
+    <string name="auth_failed">Login failed..</string>
 </resources>

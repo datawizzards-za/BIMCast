@@ -1,7 +1,9 @@
 package com.itechhubsa.bimanage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -30,7 +32,7 @@ import java.text.DateFormat;
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //private String _compare = "Home";
     private RecyclerView recyclerView;
-    private static final int SIGN_IN_REQUEST_CODE = 2017;
+    private final int SIGN_IN_REQUEST_CODE = 2017;
     private DatabaseReference _databaseReference;
 
     @Override
@@ -38,7 +40,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         initialize();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        if(FirebaseAuth.getInstance().getCurrentUser()==null)
 //        {
@@ -46,16 +48,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 //        }else{
 //            Toast.makeText(getBaseContext(), "You are logged..", Toast.LENGTH_LONG).show();
 //        }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabComment);
+        FloatingActionButton fab = findViewById(R.id.fabComment);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +68,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
     void initialize(){
         _databaseReference = FirebaseDatabase.getInstance().getReference();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -79,22 +81,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             mView = itemView;
         }
         void setUser(String user){
-            TextView tvNames = (TextView) mView.findViewById(R.id.tv_username);
+            TextView tvNames = mView.findViewById(R.id.tv_username);
             tvNames.setText(user);
         }
 
         void setDescription(String description){
-            TextView tvDescription = (TextView) mView.findViewById(R.id.tv_description);
+            TextView tvDescription = mView.findViewById(R.id.tv_description);
             tvDescription.setText(description);
         }
 
         void setDate(String messageDate){
-            TextView tvMessageDate = (TextView) mView.findViewById(R.id.tv_message_time);
+            TextView tvMessageDate = mView.findViewById(R.id.tv_message_time);
             tvMessageDate.setText(messageDate);
         }
 
         void setImg(Context c, String img){
-            ImageView imageView = (ImageView) mView.findViewById(R.id.user_image_profile);
+            ImageView imageView = mView.findViewById(R.id.user_image_profile);
             if(!img.isEmpty()){
                 Picasso.with(c).load(img).into(imageView);
                 imageView.setRotation(imageView.getRotation()+90);
@@ -131,13 +133,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
     }
+    @SuppressLint("MissingPermission")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         int _id = item.getItemId();
@@ -187,7 +190,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 finish();
                 break;
             case R.id.nav_emergency_call:
-                Toast.makeText(getBaseContext(),"call the emergency line",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"calling emergency line",Toast.LENGTH_LONG).show();
+                Intent emergencyIntent = new Intent(Intent.ACTION_CALL);
+                emergencyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                emergencyIntent.setData(Uri.parse("tel:" + "911"));
+                startActivity(emergencyIntent);
                 break;
             case R.id.nav_gates:
                 intent = new Intent(getBaseContext(),BuildingMaintenance.class);
@@ -198,7 +205,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 finish();
                 break;
             case R.id.nav_send_message:
-                Toast.makeText(getBaseContext(),"search contact then you push message",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(),"search contact then you push message",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getBaseContext(),ChartBoard.class));
+                finish();
                 break;
             case R.id.nav_washing_lane:
                 intent = new Intent(getBaseContext(),BuildingMaintenance.class);
@@ -212,7 +221,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

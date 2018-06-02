@@ -17,12 +17,12 @@ public class Plumbing extends AppCompatActivity implements View.OnClickListener 
     }
 
     void initialize() {
-        Button btnWaterTaps = (Button) findViewById(R.id.btnWaterTaps);
-        Button btnToilet = (Button) findViewById(R.id.btnToilet);
-        Button btnSinkBasin = (Button) findViewById(R.id.btnSinkBasin);
-        Button btnPlumbingOther = (Button) findViewById(R.id.btnPlumbingOther);
-        Button btnGeyser = (Button) findViewById(R.id.btnGeyser);
-        Button btnBathShower = (Button) findViewById(R.id.btnBathShower);
+        Button btnWaterTaps = findViewById(R.id.btnWaterTaps);
+        Button btnToilet = findViewById(R.id.btnToilet);
+        Button btnSinkBasin = findViewById(R.id.btnSinkBasin);
+        Button btnPlumbingOther = findViewById(R.id.btnPlumbingOther);
+        Button btnGeyser = findViewById(R.id.btnGeyser);
+        Button btnBathShower = findViewById(R.id.btnBathShower);
         btnBathShower.setOnClickListener(this);
         btnGeyser.setOnClickListener(this);
         btnPlumbingOther.setOnClickListener(this);
