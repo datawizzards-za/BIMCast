@@ -95,7 +95,7 @@ public class ChartBoard extends AppCompatActivity {
 
                 // Format the date before showing it
                 Long date = model.getMessageDate();
-                DateFormat dateFormat = new SimpleDateFormat("E, dd MMMM yyyy hh:mm:ss");
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy hh:mm");
                 String strDate = dateFormat.format(date);
 
                 messageTime.setText(strDate);

@@ -30,7 +30,6 @@ import com.squareup.picasso.Picasso;
 import java.text.DateFormat;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    //private String _compare = "Home";
     private RecyclerView recyclerView;
     private final int SIGN_IN_REQUEST_CODE = 2017;
     private DatabaseReference _databaseReference;
@@ -42,12 +41,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         initialize();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        if(FirebaseAuth.getInstance().getCurrentUser()==null)
-//        {
-//            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),SIGN_IN_REQUEST_CODE);
-//        }else{
-//            Toast.makeText(getBaseContext(), "You are logged..", Toast.LENGTH_LONG).show();
-//        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -67,7 +61,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         });
     }
     void initialize(){
-        _databaseReference = FirebaseDatabase.getInstance().getReference();
+        _databaseReference = FirebaseDatabase.getInstance().getReference("Faults");
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -230,9 +224,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode == SIGN_IN_REQUEST_CODE){
             if(resultCode==RESULT_OK){
-                //Snackbar.make(home, "Loading you messages..", Snackbar.LENGTH_LONG).show();
-                //displayMessage();
-                Toast.makeText(getBaseContext(),"Loading you messages..",Toast.LENGTH_LONG).show();
+               Toast.makeText(getBaseContext(),"Loading you messages..",Toast.LENGTH_LONG).show();
             }else{
                 //Snackbar.make(home, "We are unable to log messages...\n"+
                         //"check connection!", Snackbar.LENGTH_LONG).show();

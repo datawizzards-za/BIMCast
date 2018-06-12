@@ -38,10 +38,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
-//                    Toast.makeText(getBaseContext(), "onAuthStateChanged:signed_in:"
-//                            + user.getUid(), Toast.LENGTH_SHORT).show()
-                    Toast.makeText(getBaseContext(),"You have been logged in",
+                   Toast.makeText(getBaseContext(),"You have been logged in",
                             Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getBaseContext(),Home.class));
                     finish();

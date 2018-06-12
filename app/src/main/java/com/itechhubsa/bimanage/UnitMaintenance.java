@@ -45,23 +45,23 @@ public class UnitMaintenance extends Activity implements View.OnClickListener, C
     }
 
     void initialize() {
-        Button btnCaptureImage = (Button) findViewById(R.id.btn_capture_image);
-        Button btnSubmitReport = (Button) findViewById(R.id.btn_submit_fault);
+        Button btnCaptureImage = findViewById(R.id.btn_capture_image);
+        Button btnSubmitReport = findViewById(R.id.btn_submit_fault);
         //
-        etDescription = (EditText) findViewById(R.id.unit_fault_description);
-        etUnitNo = (EditText) findViewById(R.id.fault_unit_number);
-        etSpecifyLocation = (EditText) findViewById(R.id.fault_unit_place);
-        etSpecifyFault = (EditText) findViewById(R.id.specify_unit_fault);
+        etDescription = findViewById(R.id.unit_fault_description);
+        etUnitNo = findViewById(R.id.fault_unit_number);
+        etSpecifyLocation = findViewById(R.id.fault_unit_place);
+        etSpecifyFault = findViewById(R.id.specify_unit_fault);
         //
-        imgReportProof = (ImageView) findViewById(R.id.unit_fault_image_display);
+        imgReportProof = findViewById(R.id.unit_fault_image_display);
         //
-        rgGroup = (RadioGroup) findViewById(R.id.rg_fault_location);
+        rgGroup = findViewById(R.id.rg_fault_location);
         //
-        rbBathRoom = (RadioButton) findViewById(R.id.rb_bath_room);
-        rbBedroom = (RadioButton) findViewById(R.id.rb_bedroom);
-        rbKitchen = (RadioButton) findViewById(R.id.rb_kitchen);
-        rbLounge = (RadioButton) findViewById(R.id.rb_lounge);
-        rbOther = (RadioButton) findViewById(R.id.rb_other);
+        rbBathRoom = findViewById(R.id.rb_bath_room);
+        rbBedroom = findViewById(R.id.rb_bedroom);
+        rbKitchen = findViewById(R.id.rb_kitchen);
+        rbLounge = findViewById(R.id.rb_lounge);
+        rbOther = findViewById(R.id.rb_other);
         //
         rgGroup.setOnCheckedChangeListener(this);
         //
@@ -132,18 +132,18 @@ public class UnitMaintenance extends Activity implements View.OnClickListener, C
                         if (fault_other) {
                             if (fault_location != null) {
                                 if (specifying_fault_type.equalsIgnoreCase("Other specification")) {
-                                    FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(),
+                                    FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(),
                                             Integer.parseInt(etUnitNo.getText().toString()), fault_location, etSpecifyFault.getText().toString(), downloadUri.toString()));
                                 } else {
-                                    FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(),
+                                    FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(),
                                             Integer.parseInt(etUnitNo.getText().toString()), fault_location, specifying_fault_type, downloadUri.toString()));
                                 }
                             } else {
                                 if (specifying_fault_type.equalsIgnoreCase("Other specification")) {
-                                    FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(),
+                                    FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(),
                                             Integer.parseInt(etUnitNo.getText().toString()), etSpecifyLocation.getText().toString(), etSpecifyFault.getText().toString(), downloadUri.toString()));
                                 } else {
-                                    FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(),
+                                    FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(),
                                             Integer.parseInt(etUnitNo.getText().toString()), etSpecifyLocation.getText().toString(), specifying_fault_type, downloadUri.toString()));
                                 }
                             }

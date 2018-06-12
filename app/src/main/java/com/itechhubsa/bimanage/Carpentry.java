@@ -16,12 +16,12 @@ public class Carpentry extends AppCompatActivity implements View.OnClickListener
     }
     void initialize()
     {
-        Button btn_carpentry_doors = (Button) findViewById(R.id.btn_carpentry_doors);
-        Button btn_carpentry_kitchen_unit = (Button) findViewById(R.id.btn_carpentry_kitchen_unit);
-        Button btn_carpentry_other = (Button) findViewById(R.id.btn_carpentry_other);
-        Button btn_carpentry_shelves = (Button) findViewById(R.id.btn_carpentry_shelves);
-        Button btn_carpentry_wardrobe = (Button) findViewById(R.id.btn_carpentry_wardrobe);
-        Button btn_carpentry_windows = (Button) findViewById(R.id.btn_carpentry_windows);
+        Button btn_carpentry_doors = findViewById(R.id.btn_carpentry_doors);
+        Button btn_carpentry_kitchen_unit = findViewById(R.id.btn_carpentry_kitchen_unit);
+        Button btn_carpentry_other = findViewById(R.id.btn_carpentry_other);
+        Button btn_carpentry_shelves = findViewById(R.id.btn_carpentry_shelves);
+        Button btn_carpentry_wardrobe = findViewById(R.id.btn_carpentry_wardrobe);
+        Button btn_carpentry_windows = findViewById(R.id.btn_carpentry_windows);
         btn_carpentry_windows.setOnClickListener(this);
         btn_carpentry_wardrobe.setOnClickListener(this);
         btn_carpentry_shelves.setOnClickListener(this);

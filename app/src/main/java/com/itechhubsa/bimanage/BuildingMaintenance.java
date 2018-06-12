@@ -43,12 +43,12 @@ public class BuildingMaintenance extends AppCompatActivity implements View.OnCli
     }
 
     void initialize() {
-        Button btnCapture = (Button) findViewById(R.id.btn_capture_building_image);
-        Button btnSubmitFault = (Button) findViewById(R.id.btn_submit_building_fault);
-        etSpecify = (EditText) findViewById(R.id.specify_fault);
-        etDescription = (EditText) findViewById(R.id.fault_description);
-        tvFault = (TextView) findViewById(R.id.tvFault);
-        imgReportProof = (ImageView) findViewById(R.id.img_building_fault);
+        Button btnCapture = findViewById(R.id.btn_capture_building_image);
+        Button btnSubmitFault =  findViewById(R.id.btn_submit_building_fault);
+        etSpecify = findViewById(R.id.specify_fault);
+        etDescription = findViewById(R.id.fault_description);
+        tvFault = findViewById(R.id.tvFault);
+        imgReportProof = findViewById(R.id.img_building_fault);
 
         btnCapture.setOnClickListener(this);
         btnSubmitFault.setOnClickListener(this);
@@ -101,13 +101,13 @@ public class BuildingMaintenance extends AppCompatActivity implements View.OnCli
                         @SuppressWarnings("VisibleForTests") Uri downloadUri = taskSnapshot.getDownloadUrl();
                         assert downloadUri != null;
                         if (_other) {
-                            FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(), 100000,
+                            FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(), 100000,
                                     "Outside units", etSpecify.getText().toString(), downloadUri.toString()));
                             Toast.makeText(getBaseContext(), "Fault message sent...", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getBaseContext(), Home.class));
                             finish();
                         } else {
-                            FirebaseDatabase.getInstance().getReference().push().setValue(new Fault(etDescription.getText().toString(), 100000,
+                            FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(), 100000,
                                     "Outside units", _fault, downloadUri.toString()));
                             Toast.makeText(getBaseContext(), "Fault message sent...", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getBaseContext(), Home.class));
