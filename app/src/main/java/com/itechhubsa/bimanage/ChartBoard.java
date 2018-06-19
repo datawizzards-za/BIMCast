@@ -154,4 +154,10 @@ public class ChartBoard extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(),Home.class));
+        finish();
+    }
 }
