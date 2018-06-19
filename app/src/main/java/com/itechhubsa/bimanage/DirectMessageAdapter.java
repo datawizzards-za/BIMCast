@@ -40,6 +40,7 @@ public class DirectMessageAdapter extends ArrayAdapter {
         if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(R.layout.message_view, parent, false);
         }
+        assert messages != null;
         Message message = getItem(position);
 
         TextView tv_description = view.findViewById(R.id.tv_message);

@@ -3,6 +3,7 @@ package com.itechhubsa.bimanage;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,9 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.itechhubsa.bimanage.Pojos.Fault;
@@ -28,6 +34,7 @@ public class BuildingMaintenance extends AppCompatActivity implements View.OnCli
     private ImageView imgReportProof;
     private Uri imageUri;
     private static final int CAMERA_REQUEST = 2017;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,7 @@ public class BuildingMaintenance extends AppCompatActivity implements View.OnCli
 
     void initialize() {
         Button btnCapture = findViewById(R.id.btn_capture_building_image);
-        Button btnSubmitFault =  findViewById(R.id.btn_submit_building_fault);
+        Button btnSubmitFault = findViewById(R.id.btn_submit_building_fault);
         etSpecify = findViewById(R.id.specify_fault);
         etDescription = findViewById(R.id.fault_description);
         tvFault = findViewById(R.id.tvFault);
@@ -92,32 +99,58 @@ public class BuildingMaintenance extends AppCompatActivity implements View.OnCli
         if (TextUtils.isEmpty(etDescription.getText())) {
             etDescription.setError("Please specify the fault...");
         } else {
-            if (imageUri != null) {
-                StorageReference filePath = FirebaseStorage.getInstance().getReference().child("Gallery").child(imageUri.getLastPathSegment());
-                //Toast.makeText(getBaseContext(), imageUri.toString(), Toast.LENGTH_SHORT).show();
-                filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        @SuppressWarnings("VisibleForTests") Uri downloadUri = taskSnapshot.getDownloadUrl();
-                        assert downloadUri != null;
-                        if (_other) {
-                            FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(), 100000,
-                                    "Outside units", etSpecify.getText().toString(), downloadUri.toString()));
-                            Toast.makeText(getBaseContext(), "Fault message sent...", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getBaseContext(), Home.class));
-                            finish();
-                        } else {
-                            FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(), 100000,
-                                    "Outside units", _fault, downloadUri.toString()));
-                            Toast.makeText(getBaseContext(), "Fault message sent...", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getBaseContext(), Home.class));
-                            finish();
+            StorageReference filePath = storage.getReference().child("Gallery").child(imageUri.getLastPathSegment());
+
+            filePath.putFile(imageUri).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                    Toast.makeText(getBaseContext(), "Fault not captured...", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    // ...
+
+                    final StorageReference ref = storage.getReference().child(String.valueOf(taskSnapshot.getUploadSessionUri()));
+                    ref.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+                            // Continue with the task to get the download URL
+                            return ref.getDownloadUrl();
                         }
-                    }
-                });
-            } else {
-                Toast.makeText(getBaseContext(), "Fault not captured...", Toast.LENGTH_SHORT).show();
-            }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                Uri downloadUri = task.getResult();
+                                assert downloadUri != null;
+                                if (_other) {
+                                    FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(), 100000,
+                                            "Outside units", etSpecify.getText().toString(), downloadUri.toString()));
+                                    Toast.makeText(getBaseContext(), "Fault message sent...", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getBaseContext(), Home.class));
+                                    finish();
+                                } else {
+                                    FirebaseDatabase.getInstance().getReference("Faults").push().setValue(new Fault(etDescription.getText().toString(), 100000,
+                                            "Outside units", _fault, downloadUri.toString()));
+                                    Toast.makeText(getBaseContext(), "Fault message sent...", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getBaseContext(), Home.class));
+                                    finish();
+                                }
+                            } else {
+                                // Handle failures
+                                // ...
+
+                            }
+                        }
+                    });
+                }
+            });
         }
     }
 }

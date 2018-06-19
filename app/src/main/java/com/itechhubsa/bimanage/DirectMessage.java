@@ -32,8 +32,6 @@ public class DirectMessage extends Activity implements View.OnClickListener {
         assert fault != null;
         message_description.setText(fault.getReport_description());
 //        building_unit.setText(fault.getUnit_number());
-
-
     }
 
     void initialize() {
