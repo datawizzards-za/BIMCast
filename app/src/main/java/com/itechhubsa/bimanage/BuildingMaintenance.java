@@ -21,7 +21,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.itechhubsa.bimanage.Pojos.Fault;
@@ -99,7 +98,7 @@ public class BuildingMaintenance extends AppCompatActivity implements View.OnCli
         if (TextUtils.isEmpty(etDescription.getText())) {
             etDescription.setError("Please specify the fault...");
         } else {
-            StorageReference filePath = storage.getReference().child("Gallery").child(imageUri.getLastPathSegment());
+            final StorageReference filePath = storage.getReference().child("Gallery").child(imageUri.getLastPathSegment());
 
             filePath.putFile(imageUri).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -112,16 +111,14 @@ public class BuildingMaintenance extends AppCompatActivity implements View.OnCli
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                     // ...
-
-                    final StorageReference ref = storage.getReference().child(String.valueOf(taskSnapshot.getUploadSessionUri()));
-                    ref.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    filePath.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                         @Override
                         public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                             if (!task.isSuccessful()) {
                                 throw task.getException();
                             }
                             // Continue with the task to get the download URL
-                            return ref.getDownloadUrl();
+                            return filePath.getDownloadUrl();
                         }
                     }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
@@ -145,7 +142,6 @@ public class BuildingMaintenance extends AppCompatActivity implements View.OnCli
                             } else {
                                 // Handle failures
                                 // ...
-
                             }
                         }
                     });

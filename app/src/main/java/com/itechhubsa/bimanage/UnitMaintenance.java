@@ -121,7 +121,7 @@ public class UnitMaintenance extends Activity implements View.OnClickListener, C
     }
 
     private void addComment() {
-        StorageReference filePath = storage.getReference().child("Gallery").child(imageUri.getLastPathSegment());
+        final StorageReference filePath = storage.getReference().child("Gallery").child(imageUri.getLastPathSegment());
         filePath.putFile(imageUri).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -133,15 +133,14 @@ public class UnitMaintenance extends Activity implements View.OnClickListener, C
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                 //
-                final StorageReference ref = storage.getReference().child(String.valueOf(taskSnapshot.getUploadSessionUri()));
-                ref.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                filePath.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                         if (!task.isSuccessful()) {
                             throw task.getException();
                         }
                         // Continue with the task to get the download URL
-                        return ref.getDownloadUrl();
+                        return filePath.getDownloadUrl();
                     }
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
