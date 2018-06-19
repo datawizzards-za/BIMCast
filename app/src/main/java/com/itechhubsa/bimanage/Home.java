@@ -108,6 +108,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         ) {
             @Override
             protected void populateViewHolder(FaultViewHolder viewHolder, final Fault model, final int position) {
+                //TODO sorting the elements before i display them
+
+
+
+
+
+                /**
+                 * i will have to put a test condition before i set values to the variables
+                 * */
                 viewHolder.setDescription(model.getReport_description());
                 String stringDate = DateFormat.getDateTimeInstance().format(model.getReport_date());
                 viewHolder.setImg(getApplicationContext(), model.getImageUrl());
