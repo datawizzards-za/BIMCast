@@ -129,7 +129,7 @@ public class ChartBoard extends AppCompatActivity {
         }
     }
 
-    @Override
+    /**@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
@@ -153,7 +153,7 @@ public class ChartBoard extends AppCompatActivity {
                     });
         }
         return true;
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
